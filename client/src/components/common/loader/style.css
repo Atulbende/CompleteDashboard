@@ -1,0 +1,40 @@
+.Savtech_overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background:#555454a9;
+    z-index: 100000;
+}
+.Savtech_overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.Savtech_overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-block;
+    border-width: 2px;
+    border-color: rgb(27, 3, 3);
+    border-top-color: #fff;
+    animation: spin 0.5s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

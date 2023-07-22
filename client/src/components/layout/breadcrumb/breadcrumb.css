@@ -1,0 +1,16 @@
+.breadcrumb{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 3rem;
+    z-index: 777;
+}
+.breadcrumb-item{
+    display: flex;
+    align-items: center;
+    padding:0.8rem;
+}
+.breadcrumb-item li{
+    padding:0.2rem;
+    overflow: hidden;
+}
