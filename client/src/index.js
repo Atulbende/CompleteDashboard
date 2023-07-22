@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import Loader from './components/common/loader/Loader';
 import { Routes,Route } from 'react-router-dom'
-import { Menu } from '../src/components/layout/sidenav/MenuList'
+import { Routers } from '../src/components/layout/sidenav/MenuList'
 import ActionBar from './components/layout/actionbar/ActionBar'
 import SideNavbar from './components/layout/sidenav/SideNavbar'
 import Header from './components/layout/header/Header'
@@ -21,8 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <React.StrictMode>
 <Provider store={store}>
-<BrowserRouter>
-    
+    <BrowserRouter>
         <Routes> 
             <Route path='/' element={<Main/>}>
                 <Route   path='/header' element={<Header/>}/> 
@@ -30,15 +29,14 @@ root.render(
                 <Route   path='/breadcrumb' element={<Breadcrumb/>}/> 
                 <Route   path='/content' element={<Content/>}/> 
                 <Route   path='/actionBar' element={<ActionBar/>}/>
-                    {Menu.map((val,key)=>{ return <Route key={val.link}  path={val.link} element={val.component}/> })}
+                {Routers.map((val,key)=>{return <Route key={val.link}  path={val.link} element={val.component}/> })}
             </Route>
-                
             <Route   path='/login' element={<Login/>}/>
-       </Routes>
-    <ToastContainer/>
-    <Loader/>
-</BrowserRouter>
-    </Provider>
+        </Routes>
+        <ToastContainer/>
+        <Loader/>
+    </BrowserRouter>
+</Provider>
    
 </React.StrictMode>
 );

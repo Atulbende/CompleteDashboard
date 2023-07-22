@@ -63,7 +63,7 @@ export default function Login() {
                 <section className='login-body'>
                     <h1>LOGIN</h1>                  
                     <input name="Login_UserName" type='text' placeholder='User Name' autoComplete='false' onChange={LoginHandle}></input>
-                    <input onKeyPress={(e)=> {if(e.key==='Enter'){console.log(e);LoginCheck();}}}  name="Login_Password" type='password' placeholder='Passowrd' onChange={LoginHandle}></input>
+                    <input onKeyPress={(e)=> {if(e.key==='Enter'){LoginCheck();}}}  name="Login_Password" type='password' placeholder='Passowrd' onChange={LoginHandle}></input>
                 </section>
                 <section className='login-footer'>
                     <button type='button' className='login-btn' onClick={LoginCheck} >LOGIN</button>
