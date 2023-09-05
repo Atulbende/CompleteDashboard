@@ -1,8 +1,28 @@
 import React from 'react'
-import {  useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import {  useState,useEffect } from 'react';
+import { NavLink,useHistory } from 'react-router-dom';
 import {Role} from '../../utils/role';
+
 export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
+    const history=useHistory();
+    useEffect(() => {
+        // Prevent the default behavior of the browser's backward and forward buttons
+        const preventDefaultBehavior = (e) => {
+          e.preventDefault();
+          console.log('a')
+          history.go(0)
+          window.alert('You cannot navigate back from this page.');
+          // Implement your custom logic here (e.g., show a message or redirect)
+          // For example:
+          // window.alert('You cannot navigate back from this page.');
+        };
+    
+        window.addEventListener('popstate', preventDefaultBehavior);
+    
+        return () => {
+          window.removeEventListener('popstate', preventDefaultBehavior);
+        };
+      }, []);
     const [toggle,SetToggle]=useState(false);
     const Userrole=[1,2,3,4,5,6];
     const flag= Role.roleAuth(Userrole,Access);

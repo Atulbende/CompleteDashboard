@@ -14,13 +14,13 @@
 }
 
 .good-afternoon{
-    --bg-color: #595c7c;
+    --bg-color: #212341;
     --dialog:var(--bg-color);
     --input-focus:#191c33;
     --input-focus-color:var(--hover-color);
     --hover-color:var(--white);
     --border: #8598ac;
-    --fields: #464a6e;
+    --fields: #292e58;
     --hover:var(--fields);
     --login:#4e455e;
     --font-color:#eee;

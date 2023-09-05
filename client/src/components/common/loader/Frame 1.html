@@ -1,11 +1,32 @@
-import React from 'react'
-import  '../loader/style.css'
-function Loader() {
-  return (
-    <div className="Savtech_overlay d-none">
-    <div className="Savtech_overlay__inner">
-        <div className="Savtech_overlay__content">
-          <svg width="110" height="111" viewBox="0 0 110 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body{
+        margin:0px;
+        padding:0px;
+      }
+    .loader{
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,.45);
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="loader">
+	<div class="svg-logo">
+    <svg width="110" height="111" viewBox="0 0 110 111" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_1_5)" filter="url(#filter0_d_1_5)">
       <path d="M40.8038 61.2243L35.2973 57.699C37.7569 73.4822 41.3825 81.3884 50.4401 93.5399C43.7247 81.4963 41.5088 74.2077 40.8038 61.2243Z" fill="#FFDD00" stroke="#FFDD00"/>
       <path d="M5.01179 34.7938C22.6272 34.0569 31.0839 37.5055 41.5046 47.5293L40.8162 56.6364C29.115 45.7666 17.9337 44.8986 13.5134 45.4728C13.5134 45.4728 12.7118 49.6982 15.3489 62.8057C17.986 75.9132 23.1497 81.9012 23.1497 81.9012C23.1497 81.9012 30.3783 92.5897 37.3747 96.0025C44.3711 99.4154 48.7501 100.484 50.9114 100.703C53.0728 100.922 50.9781 101.02 49.9937 100.997C49.0093 100.974 49.3054 100.997 49.3054 100.997C49.3054 100.997 34.9096 100.234 26.4066 93.8547C18.4971 88.091 10.3428 71.2783 10 70.5C9.65723 69.7217 4.73156 52.3504 5.01179 34.7938Z" fill="#FFDD00" fill-opacity="0.82" stroke="#FFDD00"/>
@@ -41,14 +62,10 @@ function Loader() {
             </clipPath>
       </defs>
       </svg>
-</div>
-
-
-
-
+      
     </div>
-</div>
-  )
-}
+  </div>
+  </body>
+</html>
 
-export default Loader
+
