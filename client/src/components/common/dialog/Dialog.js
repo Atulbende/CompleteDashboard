@@ -12,7 +12,7 @@ import Button from '../button/Button';
         <section className='dialog-header'>
           <i class="fa-sharp fa-solid fa-comment-dots"></i>
           <span>Dialog</span>
-          <span role='button' onClick={()=>x=='d-none'?setX(''):setX('d-none')}><i class="fa-sharp fa-regular fa-circle-xmark fs-16"></i></span>
+          <span role='button' onClick={()=>x=='d-none'?setX('d-flex'):setX('')}><i class="fa-sharp fa-regular fa-circle-xmark fs-16"></i></span>
         </section>
         <section className='dialog-body'>
         <TextFields col="col-25"/>

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import '../text-field/textfields.css'
 export default function TextFields({onSubmition,col}) {
   function HandleOnSubmition(e){
-    console.log(e)
+
+
       if( onSubmition &&  e.keyCode===13){
-        onSubmition();
+          onSubmition.current.click();
+
       }
   }
   return (
-    <div className={`group-text ` + col }>
+    <div className={`slideform group-text ` + col }>
       <span className='group-text-labal'>
         <label for="text" title="Customer Full Name">Customer Name</label>       
       </span>

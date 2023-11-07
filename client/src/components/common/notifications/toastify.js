@@ -3,7 +3,7 @@ import $ from "jquery";
 
 import { toast } from 'react-toastify';
 export const Screen={  
-    LoaderON:function(){$('.Savtech_overlay').addClass('d-flex').removeClass('d-none');},
+        LoaderON:function(){$('.Savtech_overlay').addClass('d-flex').removeClass('d-none');},
     LoaderOff: function (){$('.Savtech_overlay').addClass('d-none').removeClass('d-flex'); },
     Notification:{ 
             Msg:{

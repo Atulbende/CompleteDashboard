@@ -1,28 +1,39 @@
 import React from 'react'
 import {  useState,useEffect } from 'react';
-import { NavLink,useHistory } from 'react-router-dom';
-import {Role} from '../../utils/role';
+import { NavLink, useLocation} from 'react-router-dom';
 
+import {Role} from '../../utils/role';
 export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
-    const history=useHistory();
+    const location = useLocation();
+
+    // Access the current pathname
+    const currentPath = location.pathname;
     useEffect(() => {
-        // Prevent the default behavior of the browser's backward and forward buttons
-        const preventDefaultBehavior = (e) => {
-          e.preventDefault();
-          console.log('a')
-          history.go(0)
-          window.alert('You cannot navigate back from this page.');
-          // Implement your custom logic here (e.g., show a message or redirect)
-          // For example:
-          // window.alert('You cannot navigate back from this page.');
+        
+        // Prevent the browser's back button only during the initial load of this component
+        const disableBackButton = () => {
+            
+          window.history.pushState(null, "", currentPath);
+          window.onpopstate = () => {
+            console.log(currentPath)
+            window.history.pushState(null, "",currentPath);
+          };
         };
     
-        window.addEventListener('popstate', preventDefaultBehavior);
+        // Enable the browser's back button when the component unmounts
+        const enableBackButton = () => {
+          window.onpopstate = null;
+        };
+    
+        // Call the disableBackButton function when the component mounts
+        disableBackButton();
     
         return () => {
-          window.removeEventListener('popstate', preventDefaultBehavior);
+          // Call the enableBackButton function when the component unmounts
+          enableBackButton();
         };
-      }, []);
+      }, [currentPath]);
+    
     const [toggle,SetToggle]=useState(false);
     const Userrole=[1,2,3,4,5,6];
     const flag= Role.roleAuth(Userrole,Access);

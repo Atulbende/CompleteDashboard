@@ -1,4 +1,4 @@
-import {React ,useEffect}from 'react';  
+import React from 'react';  
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -18,23 +18,7 @@ import Content from './components/layout/content/Content'
 import Breadcrumb from './components/layout/breadcrumb/Breadcrumb'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-useEffect(() => {
-    // Prevent the default behavior of the browser's backward and forward buttons
-    const preventDefaultBehavior = (e) => {
-      e.preventDefault();
-      console.log('a')
-      window.alert('You cannot navigate back from this page.');
-      // Implement your custom logic here (e.g., show a message or redirect)
-      // For example:
-      // window.alert('You cannot navigate back from this page.');
-    };
 
-    window.addEventListener('popstate', preventDefaultBehavior);
-
-    return () => {
-      window.removeEventListener('popstate', preventDefaultBehavior);
-    };
-  }, []);
 root.render(
 <React.StrictMode>
 <Provider store={store}>

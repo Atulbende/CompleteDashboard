@@ -1,4 +1,5 @@
 .group-text{
+
    display: flex;
    background-color: var(--fields);
    margin: 0.5rem;
@@ -6,6 +7,8 @@
    border-radius: 2rem;
    max-height: 4.2rem;
    border: border-box;
+   animation: slideform 0.3s ease-out;
+   /* transform: translateX(-400%) ; */
 }
 .group-text-labal{
     display: block;
@@ -56,3 +59,14 @@
    color: var( --input-focus-color);
  }
 } 
+/* .slideform {
+   animation: slideform 0.3s ease-out;
+ } */
+ @keyframes slideform {
+   0% { transform: translateX(-100%) }
+   25% { transform: translateX(-80%) }
+   50% { transform: translateX(-70%) }
+   75% { transform: translateX(-50%) }
+   100% { transform: translateX(100%) }
+  }
+ 

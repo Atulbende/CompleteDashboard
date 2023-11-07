@@ -55,4 +55,17 @@ a {
   text-decoration: none;
 }
   /* Add more styles... */
-  
+  /* .error_msg:empty {
+    color: red!important;
+  } */
+  .error_msg:not(:empty) {
+    animation: shaking 0.3s ease-out;
+  }
+  @keyframes shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+   }
+   
