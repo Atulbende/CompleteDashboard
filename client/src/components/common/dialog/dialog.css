@@ -11,14 +11,14 @@
     align-items: center;
 }
 .dialog{
-    /* position:absolute;
-    top: 0; */
+    position:absolute;
     display: flex;
     flex-direction: column;
     margin: 0.5rem;
     background-color: var(--dialog);
     color: var(--font-color); 
     border-radius: 15px 15px 1px 1px;
+    min-height: 10rem;
 }
 .dialog-header{
     display: flex;
@@ -44,6 +44,7 @@
     justify-content:end;
     align-items: center;
     padding: 0.5rem;
+    width: 100%;
 
 }
 
@@ -51,7 +52,6 @@
     
     .dialog{    
         margin: 0;
-        height: 100% !important;
        }   
        .dialog-body{
         overflow-y: auto;

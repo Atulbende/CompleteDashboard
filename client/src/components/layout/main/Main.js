@@ -5,6 +5,7 @@ import Content from '../content/Content';
 import Breadcrumb from '../breadcrumb/Breadcrumb'
 import './main.scss'
 export default function Main() {
+  
   return (
     <>
       <Header/>

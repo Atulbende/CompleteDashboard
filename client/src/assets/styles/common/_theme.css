@@ -1,4 +1,5 @@
 .good-morning{
+    transition: background-color 3s ease-in;
     --bg-color: white ;
     --dialog:var(--bg-color);
     --hover:#ebe6e6;
@@ -26,7 +27,8 @@
     --font-color:#eee;
     --dark: #343a40;
     --gray:#eee;
-   
+
+    
 }
 /*.good-evening{
     --bg-color: white ;

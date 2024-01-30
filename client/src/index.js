@@ -18,7 +18,6 @@ import Content from './components/layout/content/Content'
 import Breadcrumb from './components/layout/breadcrumb/Breadcrumb'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
 <React.StrictMode>
 <Provider store={store}>
