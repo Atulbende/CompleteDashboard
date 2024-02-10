@@ -49,37 +49,31 @@
   *
   * @author jh3y - jheytompkins.com
 */
-@-webkit-keyframes flippers {
-  0% {
-    -webkit-transform: perspective(40px) rotateY(-180deg);
-            transform: perspective(40px) rotateY(-180deg); }
-  50% {
-    -webkit-transform: perspective(40px) rotateY(0deg);
-            transform: perspective(40px) rotateY(0deg); } }
-@keyframes flippers {
-  0% {
-    -webkit-transform: perspective(40px) rotateY(-180deg);
-            transform: perspective(40px) rotateY(-180deg); }
-  50% {
-    -webkit-transform: perspective(40px) rotateY(0deg);
-            transform: perspective(40px) rotateY(0deg); } }
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
-.flippers {
-  height: 20px;
-  display: grid;
-  grid-template-columns: repeat(5, 20px);
-  grid-gap: 5px; }
-  .flippers div {
-    -webkit-animation: flippers calc(1.25 * 1s) calc(var(--delay) * 1s) infinite ease;
-            animation: flippers calc(1.25 * 1s) calc(var(--delay) * 1s) infinite ease;
-    background-color: var(--primary); }
-    .flippers div:nth-of-type(1) {
-      --delay: 0.25; }
-    .flippers div:nth-of-type(2) {
-      --delay: 0.5; }
-    .flippers div:nth-of-type(3) {
-      --delay: 0.75; }
-    .flippers div:nth-of-type(4) {
-      --delay: 1; }
-    .flippers div:nth-of-type(5) {
-      --delay: 1.25; }
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+/**
+  * Traditional
+  *
+  * @author jh3y
+*/
+.traditional {
+  -webkit-animation: spin .5s infinite linear;
+          animation: spin .5s infinite linear;
+  border-radius: 100%;
+  -webkit-box-shadow: inset -2px 0 0 0px var(--primary);
+          box-shadow: inset -2px 0 0 0px var(--primary);
+  content: '';
+  height: 3rem;
+  position: relative;
+display: inline-block;
+  width: 3rem; 
+  margin: -15px;
+}

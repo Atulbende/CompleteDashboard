@@ -3,12 +3,11 @@
     background-color: var(--login);
     height: 100vh;
     display: flex;
-    justify-content:center ;
+    justify-content:center;
     align-items: center;
     padding: 0;
     margin:0;
     overflow: hidden;
-
 }
 .login{
     width: 30rem;
@@ -115,7 +114,11 @@
     color: #eee;
     font-size: 1.5rem;
     margin: 5px;
+    transition: width 0.4s ease-in-out;
  }
+ .login-btn.expanded ,.sign-up-btn.expanded {
+    width: 4rem; /* Expanded width */
+  }
  .login-footer > span{
     color:#5c2cad
  }

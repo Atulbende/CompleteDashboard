@@ -5,7 +5,7 @@ function Loader() {
     <div className="Savtech_overlay d-none">
     <div className="Savtech_overlay__inner">
         <div className="Savtech_overlay__content ">
-        <div class="flippers"><div></div><div></div><div></div><div></div><div></div></div>
+        <div class="traditional"></div>
           {/* <svg width="110" height="111" viewBox="0 0 110 111" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_1_5)" filter="url(#filter0_d_1_5)">
       <path d="M40.8038 61.2243L35.2973 57.699C37.7569 73.4822 41.3825 81.3884 50.4401 93.5399C43.7247 81.4963 41.5088 74.2077 40.8038 61.2243Z" fill="#FFDD00" stroke="#FFDD00"/>
