@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import  './sidebar.scss';
 import { Menu } from './MenuList';
 import { useSelector } from 'react-redux';
 import SideBar from '../sidenav/SideBar';
 export default function SideNavbar() {
   const toggleSidebar=useSelector((state)=> state.uiControls.isToggle);
-  
+  const SideBarContent= useMemo(()=>{
+    return Menu.map((val, index) => {
+      return (<SideBar  key={index} i={index} Lable={val.title} Link={val.link} icon={val.icon} Access={val.access}  subMenu={val.subMenu}></SideBar>);
+   })
+  },[Menu])
   return (
     <div className={`sidebar  ${toggleSidebar}`}>  
- 
-        {Menu.map((val, index) => {
-           return (<SideBar  key={index} i={index} Lable={val.title} Link={val.link} icon={val.icon} Access={val.access}  subMenu={val.subMenu}></SideBar>);
-        })
-      }
-     
+        {SideBarContent}
     </div>
   )
 }

@@ -7,10 +7,12 @@ console.log('base:',baseURL);
 const clientAPI = Axios.create({
   baseURL: baseURL,
   timeout:20000,
-  headers:{}
+  headers:{},
+  withCredentials: true
 });
 clientAPI.interceptors.request.use(function (config) {
       // Screen.LoaderON();  
+      console.log('config',config)
       return config;
 }, function (error) {
       return Promise.reject(error);

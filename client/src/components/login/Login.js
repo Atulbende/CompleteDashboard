@@ -30,8 +30,15 @@ export default function Login() {
     }
     async  function  LoginCheck(){ 
                 if(Login.loginPassword && Login.loginUserName){
+                    // fetch('http://127.0.0.1:8000/api/v1/user/login', { credentials: 'include',method:'POST',body:{data:Login}}).then((loginResponse)=>{
+                    //     if(loginResponse?.data?.success===true){ 
+                    //                 Screen.Notification.Success(loginResponse?.data?.message);
+                    //                 Navigate('/Dashboard');
+                    //             }else{
+                    //                 Screen.Notification.Error(loginResponse?.data?.errors);
+                    //             }
+                    // })
                         userLogin({data:Login}).then((loginResponse)=>{
-                     
                             if(loginResponse?.data?.success===true){ 
                                 Screen.Notification.Success(loginResponse?.data?.message);
                                 Navigate('/Dashboard');

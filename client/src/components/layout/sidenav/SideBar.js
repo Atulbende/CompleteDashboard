@@ -5,29 +5,24 @@ import { NavLink, useLocation} from 'react-router-dom';
 import {Role} from '../../utils/role';
 export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
     const location = useLocation();
-
     // Access the current pathname
     const currentPath = location.pathname;
     useEffect(() => {
-        
         // Prevent the browser's back button only during the initial load of this component
         const disableBackButton = () => {
-            
           window.history.pushState(null, "", currentPath);
           window.onpopstate = () => {
             console.log(currentPath)
             window.history.pushState(null, "",currentPath);
           };
         };
-    
         // Enable the browser's back button when the component unmounts
         const enableBackButton = () => {
           window.onpopstate = null;
         };
-    
         // Call the disableBackButton function when the component mounts
         disableBackButton();
-    
+
         return () => {
           // Call the enableBackButton function when the component unmounts
           enableBackButton();
@@ -37,6 +32,7 @@ export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
     const [toggle,SetToggle]=useState(false);
     const Userrole=[1,2,3,4,5,6];
     const flag= Role.roleAuth(Userrole,Access);
+    console.log('red:')
     if(subMenu && flag) {
         return (
             <div  className={toggle ? 'menu-item open':'menu-item'} key={i} ><div onClick={()=>{SetToggle(!toggle)}} className={`sidebar-item`}><span className='icon'> <i  className={icon}></i></span><span className='sidebar-title'> {Lable}</span><i className={toggle ? 'fas fa-chevron-down':'fas fa-chevron-right'}  ></i></div>
