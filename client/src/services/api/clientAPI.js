@@ -1,28 +1,40 @@
 
 import Axios from 'axios';
-import { Screen } from '../../components/common/notifications/toastify';
+// import { Screen } from '../../components/common/notifications/toastify';
+import {setToken}  from '../../redux/reducers/authSlice';
 export const baseURL=`${process.env.REACT_APP_DASHBOARD_APP_API_BASEURL}`;
 // Create an instance of Axios with a base URL
 console.log('base:',baseURL);
+Axios.defaults.withCredentials = true
 const clientAPI = Axios.create({
-  baseURL: baseURL,
-  timeout:20000,
-  headers:{},
-  withCredentials: true
-});
+      withCredentials: true,
+      // credentials: 'include',
+      // credentials: 'include',
+      baseURL: baseURL,
+      timeout:20000,    
+    });
+
+const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
+    
 clientAPI.interceptors.request.use(function (config) {
-      // Screen.LoaderON();  
-      console.log('config',config)
+      // Screen.LoaderON();
+      // dispatch(setToken({'token':'token'}))  
+   
+      config.headers["Authorization"] = `Bearer TOKEN`;
       return config;
 }, function (error) {
       return Promise.reject(error);
 });
 clientAPI.interceptors.response.use(function (response) {
       // Screen.LoaderOff();
+      //  dispatch(setToken({'token':'token'}))  
       return response;
 }, function (error) {
       return Promise.reject(error);
 });
+return next(action);
+};
+
 
 // export const Api= async(method,url,data,res)=>{ 
 // if(method=='GET') 
@@ -36,7 +48,8 @@ clientAPI.interceptors.response.use(function (response) {
 // });     
 // return res;
 // }
+export {clientAPI , axiosMiddleware};
+// export default axiosMiddleware;
 
-export {clientAPI}
 // export  LoadGrids;
 // module.export Api();

@@ -1,6 +1,10 @@
 module.exports={
     user:{
         user_login:'user/login',
-        user_singup:'user/singup'
+        user_singup:'user/singup',
+        user_logout:'user/logout'
+    },
+    app:{
+         getkeywords:'app/keywords'   
     }
 }

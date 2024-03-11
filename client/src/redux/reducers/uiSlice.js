@@ -1,7 +1,6 @@
-
 import {createSlice} from '@reduxjs/toolkit';
 const initialState={
-    isToggle:'collaps',
+    isToggle:'collaps', 
 }
 const uiSlice=createSlice({
     name:'ui',

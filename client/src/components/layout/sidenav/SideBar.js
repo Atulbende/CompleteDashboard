@@ -3,7 +3,9 @@ import {  useState,useEffect } from 'react';
 import { NavLink, useLocation} from 'react-router-dom';
 
 import {Role} from '../../utils/role';
+import { useSelector } from 'react-redux';
 export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
+  const {roles}=useSelector((state)=>state.authControls);
     const location = useLocation();
     // Access the current pathname
     const currentPath = location.pathname;
@@ -22,7 +24,6 @@ export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
         };
         // Call the disableBackButton function when the component mounts
         disableBackButton();
-
         return () => {
           // Call the enableBackButton function when the component unmounts
           enableBackButton();
@@ -30,7 +31,7 @@ export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
       }, [currentPath]);
     
     const [toggle,SetToggle]=useState(false);
-    const Userrole=[1,2,3,4,5,6];
+    const Userrole=roles;
     const flag= Role.roleAuth(Userrole,Access);
     console.log('red:')
     if(subMenu && flag) {

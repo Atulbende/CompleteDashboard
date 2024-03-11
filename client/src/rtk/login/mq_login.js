@@ -1,5 +1,5 @@
 import {apiSlice} from '../apiSlice';
-import {user} from '../../services/api/endPoints'
+import {user} from '../../services/api/endPoints';
 export const mq_login= apiSlice.injectEndpoints({
     endpoints:(build)=>({
         userLogin:build.mutation({
@@ -15,10 +15,18 @@ export const mq_login= apiSlice.injectEndpoints({
                 method:'POST',
                 data:data
             })
+        }),
+        UserLogout:build.mutation({
+            query:()=>({
+                url:user.user_logout,
+                method:'POST',
+                data:''
+            })
         })
     })
 }); 
 export const {
     useUserLoginMutation,
-    useUserSingupMutation
+    useUserSingupMutation,
+    useUserLogoutMutation
 }=mq_login

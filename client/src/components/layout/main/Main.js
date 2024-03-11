@@ -4,6 +4,8 @@ import SideNavbar from '../sidenav/SideNavbar';
 import Content from '../content/Content';
 import Breadcrumb from '../breadcrumb/Breadcrumb'
 import './main.scss'
+import { useSelector } from 'react-redux';
+
 export default function Main() {
   
   return (

@@ -6,7 +6,11 @@ import { Validation } from '../utils/login/validation';
 import { useNavigate } from 'react-router-dom';
 import {useUserLoginMutation,useUserSingupMutation} from '../../rtk/login/mq_login'
 import LoginButton from '../common/loginButton/LoginButton'
+import { decodeToken } from "react-jwt";
+import {useDispatch} from 'react-redux';
+import { setAuth,getAuth } from '../../redux/reducers/authSlice';
 export default function Login() {
+    const Dispath=useDispatch()
     const Navigate=useNavigate();
     const [userLogin,{isLoading:loginLoading}]=useUserLoginMutation();
     const [userSinup,{isLoading:singupLoading}]=useUserSingupMutation();
@@ -30,23 +34,17 @@ export default function Login() {
     }
     async  function  LoginCheck(){ 
                 if(Login.loginPassword && Login.loginUserName){
-                    // fetch('http://127.0.0.1:8000/api/v1/user/login', { credentials: 'include',method:'POST',body:{data:Login}}).then((loginResponse)=>{
-                    //     if(loginResponse?.data?.success===true){ 
-                    //                 Screen.Notification.Success(loginResponse?.data?.message);
-                    //                 Navigate('/Dashboard');
-                    //             }else{
-                    //                 Screen.Notification.Error(loginResponse?.data?.errors);
-                    //             }
-                    // })
-                        userLogin({data:Login}).then((loginResponse)=>{
+                          userLogin({data:Login}).then((loginResponse)=>{
                             if(loginResponse?.data?.success===true){ 
                                 Screen.Notification.Success(loginResponse?.data?.message);
+                                // const a= jwt.decodeToken(loginResponse?.data?.accessTokenId)
+                                // const _decodeToken = decodeToken(loginResponse?.data?.data?.accessTokenId);
+                                Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId}));
                                 Navigate('/Dashboard');
                             }else{
                                 Screen.Notification.Error(loginResponse?.data?.errors);
                             }
                         });
-                        
                 }else{
                     Screen.Notification.Error(Screen.Notification.Msg.Def2);
                 }

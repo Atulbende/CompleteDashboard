@@ -3,10 +3,14 @@ import $ from "jquery";
 
 import { toast } from 'react-toastify';
 export const Screen={  
-        morning:function(){
-        console.log('res:1')
-        $('#bodys').addClass('good-morning').removeClass('good-afternoon');},
-    night: function (){$('#bodys').addClass('good-afternoon').removeClass('good-morning'); },
+    morning:function(){
+        $('#bodys').addClass('good-morning').removeClass('good-afternoon');
+        localStorage.setItem('theme','good-morning')
+},
+    night: function (){
+        $('#bodys').addClass('good-afternoon').removeClass('good-morning');
+        localStorage.setItem('theme','good-afternoon')
+},
     LoaderON:function(){$('.Savtech_overlay').addClass('d-flex').removeClass('d-none');},
     LoaderOff: function (){$('.Savtech_overlay').addClass('d-none').removeClass('d-flex'); },
     Notification:{ 

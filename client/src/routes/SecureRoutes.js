@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Routers } from '../components/layout/sidenav/MenuList'
 import ActionBar from '../components/layout/actionbar/ActionBar'
 import SideNavbar from '../components/layout/sidenav/SideNavbar'
@@ -10,6 +10,16 @@ import { useSelector } from 'react-redux';
 import Main from '../components/layout/main/Main';
 import { Routes,Route, useNavigate } from 'react-router-dom'
 export default function SecureRoutes() {
+  const Navigate=useNavigate()
+  const {isLogin,accessId}=useSelector((state)=> state.authControls);
+  console.log("user:",isLogin,accessId);
+  useEffect(()=>{
+    if(!!isLogin && accessId){
+        Navigate('/dashboard');
+      }else{
+        Navigate('/login');
+    }
+  },[accessId,isLogin])
   return (
         <Routes>
             <Route path='/' element={<Main/>}>
@@ -21,6 +31,7 @@ export default function SecureRoutes() {
                 {Routers.map((val,key)=>{return <Route key={val.link}  path={val.link} element={val.component}/> })}
             </Route>
             <Route   path='/login' element={<Login/>}/>
+           
           </Routes>
          
        
