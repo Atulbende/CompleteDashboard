@@ -16,6 +16,7 @@
 
 .good-afternoon{
     --bg-color: #212341;
+    --color:white;
     --dialog:var(--bg-color);
     --input-focus:#191c33;
     --input-focus-color:var(--hover-color);

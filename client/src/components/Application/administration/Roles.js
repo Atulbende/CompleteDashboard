@@ -1,5 +1,5 @@
 import {useRef,React} from 'react'
-import TextFields from '../../common/text-field/TextFields'
+import Checkbox from '../../common/checkbox/Checkbox'
 import ActionBar from '../../layout/actionbar/ActionBar'
 import Dialog from '../../common/dialog/Dialog';
 export default function Roles() {
@@ -7,9 +7,13 @@ export default function Roles() {
     <>
      <ActionBar />
           <div  className='content-form'>
-              <TextFields  col={'col-33'}/>
-              <TextFields    col={'col-33'}/>
-              <TextFields    col={'col-33'}/>
+        <Checkbox label="Role Manager" col={'col-15'}></Checkbox>
+        <Checkbox label="Role Reader" col={'col-15'}></Checkbox>
+        <Checkbox label="Dashboard Manager" col={'col-15'}></Checkbox>
+        <Checkbox label="Dashboard Manager" col={'col-15'}></Checkbox>
+        <Checkbox label="Dashboard Manager" col={'col-15'}></Checkbox>
+        <Checkbox label="Dashboard Manager" col={'col-15'}></Checkbox>
+        
           </div>
           </>
   )

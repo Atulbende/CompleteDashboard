@@ -1,6 +1,6 @@
 
 import Axios from 'axios';
-// import { Screen } from '../../components/common/notifications/toastify';
+import { Screen } from '../../components/common/notifications/toastify';
 import {setToken}  from '../../redux/reducers/authSlice';
 export const baseURL=`${process.env.REACT_APP_DASHBOARD_APP_API_BASEURL}`;
 // Create an instance of Axios with a base URL
@@ -14,10 +14,11 @@ const clientAPI = Axios.create({
       timeout:20000,    
     });
 
-const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
-    
+const axiosMiddleware = ({ dispatch, getState }) => next => async action => {    
 clientAPI.interceptors.request.use(function (config) {
-      // Screen.LoaderON();
+
+      // const {isLoading}=config
+      Screen.LoaderON();
       // dispatch(setToken({'token':'token'}))  
    
       config.headers["Authorization"] = `Bearer TOKEN`;
@@ -26,10 +27,12 @@ clientAPI.interceptors.request.use(function (config) {
       return Promise.reject(error);
 });
 clientAPI.interceptors.response.use(function (response) {
-      // Screen.LoaderOff();
+      Screen.LoaderOff();
       //  dispatch(setToken({'token':'token'}))  
+      console.log('response:',response)
       return response;
-}, function (error) {
+}, function (error) {   
+      console.log('error:',error);
       return Promise.reject(error);
 });
 return next(action);

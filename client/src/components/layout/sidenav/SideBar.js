@@ -33,7 +33,6 @@ export default function SideBar({i,Lable,Link,icon,Access,subMenu}) {
     const [toggle,SetToggle]=useState(false);
     const Userrole=roles;
     const flag= Role.roleAuth(Userrole,Access);
-    console.log('red:')
     if(subMenu && flag) {
         return (
             <div  className={toggle ? 'menu-item open':'menu-item'} key={i} ><div onClick={()=>{SetToggle(!toggle)}} className={`sidebar-item`}><span className='icon'> <i  className={icon}></i></span><span className='sidebar-title'> {Lable}</span><i className={toggle ? 'fas fa-chevron-down':'fas fa-chevron-right'}  ></i></div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../text-field/textfields.css'
-export default function TextFields({onSubmition,col}) {
+export default function TextFields({onSubmition,col,label,val}) {
 
   function HandleOnSubmition(e){
       if( onSubmition &&  e.keyCode===13){
@@ -11,9 +11,9 @@ export default function TextFields({onSubmition,col}) {
   return (
     <div className={`slideform group-text ` + col }>
       <span className='group-text-labal'>
-        <label for="text" title="Customer Full Name">Customer Name</label>       
+        <label for="text" title="Customer Full Name">{label}</label>       
       </span>
-      <input  onKeyUp={HandleOnSubmition} type='text'></input>
+      <input  onKeyUp={HandleOnSubmition} type='text' value={val}></input>
     </div>
   )
 }
