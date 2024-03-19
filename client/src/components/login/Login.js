@@ -39,7 +39,8 @@ export default function Login() {
                                 Screen.Notification.Success(loginResponse?.data?.message);
                                 // const a= jwt.decodeToken(loginResponse?.data?.accessTokenId)
                                 // const _decodeToken = decodeToken(loginResponse?.data?.data?.accessTokenId);
-                                Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId}));
+                                console.log('ppO:',loginResponse);
+                                Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId,"refreshToken":loginResponse?.data?.data?.refreshTokenId}));
                                 Navigate('/Dashboard');
                             }else{
                                 Screen.Notification.Error(loginResponse?.data?.errors);

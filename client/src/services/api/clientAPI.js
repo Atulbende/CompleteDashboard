@@ -1,44 +1,50 @@
 
 import Axios from 'axios';
 import { Screen } from '../../components/common/notifications/toastify';
-import {setToken}  from '../../redux/reducers/authSlice';
+import {setToken,logoutUser}  from '../../redux/reducers/authSlice';
 export const baseURL=`${process.env.REACT_APP_DASHBOARD_APP_API_BASEURL}`;
 // Create an instance of Axios with a base URL
-console.log('base:',baseURL);
 Axios.defaults.withCredentials = true
 const clientAPI = Axios.create({
       withCredentials: true,
-      // credentials: 'include',
-      // credentials: 'include',
       baseURL: baseURL,
       timeout:20000,    
     });
 
 const axiosMiddleware = ({ dispatch, getState }) => next => async action => {    
-clientAPI.interceptors.request.use(function (config) {
-
-      // const {isLoading}=config
-      Screen.LoaderON();
-      // dispatch(setToken({'token':'token'}))  
-   
-      config.headers["Authorization"] = `Bearer TOKEN`;
+clientAPI.interceptors.request.use(function async(config) {
+      const currentState = getState();
+      // Screen.LoaderON();
+      const accessId=currentState.authControls.accessId;
+      config.headers["Authorization"] = `Bearer ${accessId}`;
       return config;
 }, function (error) {
       return Promise.reject(error);
 });
-clientAPI.interceptors.response.use(function (response) {
-      Screen.LoaderOff();
+clientAPI.interceptors.response.use(function  (response) {
+      // Screen.LoaderOff();
       //  dispatch(setToken({'token':'token'}))  
       console.log('response:',response)
       return response;
-}, function (error) {   
-      console.log('error:',error);
-      return Promise.reject(error);
+}, async function (error)  {   
+      const currentState = getState();
+      console.log('currentState:',error);
+      const refreshId=currentState.authControls.refreshId;
+      if(error?.response?.data?.statusCode===404 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
+            const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
+              if(res?.data?.statusCode===201 && res?.data?.message==='Token Refreshed'){
+                  console.log('Token:',res,res?.data?.data?.accessTokenId)
+                  dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
+                  return clientAPI.request(error.config); 
+            } 
+      }else if(error?.response?.data?.statusCode===405 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
+            Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
+            dispatch(logoutUser())
+      }
+      // return Promise.reject(error);
 });
 return next(action);
 };
-
-
 // export const Api= async(method,url,data,res)=>{ 
 // if(method=='GET') 
 // await  clientAPI.get(url,data).then((response)=>{
