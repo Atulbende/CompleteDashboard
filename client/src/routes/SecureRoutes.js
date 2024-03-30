@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
-import { Routers } from '../components/layout/sidenav/MenuList'
+import { GerRouter } from '../components/layout/sidenav/MenuList'
 import ActionBar from '../components/layout/actionbar/ActionBar'
 import SideNavbar from '../components/layout/sidenav/SideNavbar'
 import Header from '../components/layout/header/Header'
@@ -11,12 +11,11 @@ import Main from '../components/layout/main/Main';
 import { Routes,Route, useNavigate } from 'react-router-dom'
 export default function SecureRoutes() {
   const Navigate=useNavigate()
+  const {roles}=useSelector((state)=>state.authControls);
   const {isLogin,accessId}=useSelector((state)=> state.authControls);
-  console.log("user:",isLogin,accessId);
+  const Routers= GerRouter(roles);
   useEffect(()=>{
-    if(!!isLogin && accessId){
-        Navigate('/dashboard');
-      }else{
+    if(!isLogin && !accessId){
         Navigate('/login');
     }
   },[accessId,isLogin])

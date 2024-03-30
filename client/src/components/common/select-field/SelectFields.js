@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useMemo,useState } from 'react'
 import Select from 'react-select'
 import '../select-field/selectfields.css'
 import {colourStyles} from './style.js'
-export default function TextFields({col}) {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' ,},
-    { value: 'vasnilsla', label: 'Vanillsa' }
-  ];
+export default function SelectFields({id,onChangeEvent,options,label,col,val}) {
+  const optionValue=useMemo(()=>{
+    const a = options.find((_v)=>_v.value==val);
+    return a;
+  },[val]);
+const onChangeHandle=(e)=>{
+  onChangeEvent((pre)=>({...pre,[id]:e?.value}))
+}
   return (
     <div className={`group-select ${col}` }>
       <span className='group-select-labal'>
-        <label title="Customer Full Name" for="select">Customer Full Name</label>
+        <label id={`_${id}_`} htmlFor="select">{label}</label>
       </span>
-      <Select  styles={colourStyles} options={options} />
+      <Select id={id} onChange={onChangeHandle} isClearable styles={colourStyles} defaultValue={'--Select--'} options={options} value={optionValue}/>
     </div>
   )
 }

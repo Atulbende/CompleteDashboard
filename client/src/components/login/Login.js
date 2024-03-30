@@ -6,9 +6,9 @@ import { Validation } from '../utils/login/validation';
 import { useNavigate } from 'react-router-dom';
 import {useUserLoginMutation,useUserSingupMutation} from '../../rtk/login/mq_login'
 import LoginButton from '../common/loginButton/LoginButton'
-import { decodeToken } from "react-jwt";
+// import { decodeToken } from "react-jwt";
 import {useDispatch} from 'react-redux';
-import { setAuth,getAuth } from '../../redux/reducers/authSlice';
+import { setAuth } from '../../redux/reducers/authSlice';
 export default function Login() {
     const Dispath=useDispatch()
     const Navigate=useNavigate();
@@ -39,7 +39,6 @@ export default function Login() {
                                 Screen.Notification.Success(loginResponse?.data?.message);
                                 // const a= jwt.decodeToken(loginResponse?.data?.accessTokenId)
                                 // const _decodeToken = decodeToken(loginResponse?.data?.data?.accessTokenId);
-                                console.log('ppO:',loginResponse);
                                 Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId,"refreshToken":loginResponse?.data?.data?.refreshTokenId}));
                                 Navigate('/Dashboard');
                             }else{
@@ -55,7 +54,7 @@ export default function Login() {
     async  function  SignUpSave(){
         if(Validation.Valid(Signup)){
         userSinup({data:Signup}).then((singupResponse)=>{
-            if(singupResponse?.data?.statusCode.toString() ==='200' && singupResponse?.data?.success === true){
+            if(singupResponse?.data?.statusCode.toString() ==='201' && singupResponse?.data?.success === true){
                 Screen.Notification.Success(singupResponse?.data?.message);
                 setTimeout(()=>{
                     clickOnLogin();

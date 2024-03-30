@@ -24,7 +24,7 @@ export default function Header() {
   }
   const logout=async()=>{
     const var_IsLogout= await UserLogout();
-    console.log('var_IsLogout:',var_IsLogout);
+    navigate('/login')
     if(var_IsLogout?.data?.statusCode===204 || var_IsLogout?.data?.statusCode===403){
         Dispatch(logoutUser()).then
         (()=>{

@@ -22,11 +22,46 @@ export const mq_login= apiSlice.injectEndpoints({
                 method:'POST',
                 data:''
             })
+        }),
+        getRoles:build.query({
+            query:()=>({
+                url:user.user_GetRoles,
+                method:'GET',
+                data:''
+            })
+        }),
+        getGridUsers:build.query({
+            query:()=>({
+                url:user.user_GridUsers,
+                method:'GET',
+                data:''
+            }),
+            providesTags:['users']
+        }),
+        openUser:build.mutation({
+            query:({data})=>({
+                url:user.user_OpenUser,
+                method:'POST',
+                data:data
+            })
+        }),
+        saveUser:build.mutation({
+            query:({data})=>({
+                url:user.user_SaveUser,
+                method:'POST',
+                data:data
+            }),
+            invalidatesTags:['users']
         })
+        
     })
 }); 
 export const {
     useUserLoginMutation,
     useUserSingupMutation,
-    useUserLogoutMutation
+    useUserLogoutMutation,
+    useGetRolesQuery,
+    useGetGridUsersQuery,
+    useOpenUserMutation,
+    useSaveUserMutation
 }=mq_login

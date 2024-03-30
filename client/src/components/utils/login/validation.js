@@ -2,7 +2,7 @@ import { Screen } from '../../common/notifications/toastify';
 export const Validation={
      Valid:function(obj){
         var flag=true;
-        const regex = new RegExp('^[^\s@]+@[^\s@]+\.[^\s@]+$');
+        const regex = new RegExp('^[^@]+@[^@]+.[^@]+$');
         if(!regex.test(obj.Signup_Email) || obj.Signup_Email===""){
             Screen.Notification.Error("Please enter correct email");
              flag=false;

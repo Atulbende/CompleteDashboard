@@ -1,11 +1,11 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "../../rtk/apiSlice";
 import {persistReducer,persistStore } from "redux-persist";
 import uiControlReducer from '../reducers/uiSlice';
 import authReducer from "../reducers/authSlice";
 import storage from "redux-persist/lib/storage";
 import {axiosMiddleware} from '../../services/api/clientAPI'
-import {encryptTransform} from 'redux-persist-transform-encrypt';
+// import {encryptTransform} from 'redux-persist-transform-encrypt';
 
 // const encryptor = encryptTransform({
 //     secretKey: 'your-secret-key',

@@ -14,7 +14,7 @@ const clientAPI = Axios.create({
 const axiosMiddleware = ({ dispatch, getState }) => next => async action => {    
 clientAPI.interceptors.request.use(function async(config) {
       const currentState = getState();
-      // Screen.LoaderON();
+      Screen.LoaderON();
       const accessId=currentState.authControls.accessId;
       config.headers["Authorization"] = `Bearer ${accessId}`;
       return config;
@@ -22,22 +22,25 @@ clientAPI.interceptors.request.use(function async(config) {
       return Promise.reject(error);
 });
 clientAPI.interceptors.response.use(function  (response) {
-      // Screen.LoaderOff();
-      //  dispatch(setToken({'token':'token'}))  
-      console.log('response:',response)
+      Screen.LoaderOff();
       return response;
 }, async function (error)  {   
       const currentState = getState();
-      console.log('currentState:',error);
       const refreshId=currentState.authControls.refreshId;
-      if(error?.response?.data?.statusCode===404 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
+      if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
             const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
-              if(res?.data?.statusCode===201 && res?.data?.message==='Token Refreshed'){
-                  console.log('Token:',res,res?.data?.data?.accessTokenId)
+         
+  
+              if(res?.data?.statusCode===205 && res?.data?.message==='Token Refreshed'){
+                  console.log(':red:',res)
                   dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
                   return clientAPI.request(error.config); 
             } 
-      }else if(error?.response?.data?.statusCode===405 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
+      }else if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
+            Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
+            dispatch(logoutUser())
+      }else{
+           
             Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
             dispatch(logoutUser())
       }

@@ -39,6 +39,7 @@ export const Screen={
                             draggable: true,
                             progress: undefined,
                             theme: "light",
+                            width: "60px"
                             });
             },
             Warm:function(Msg,Time){
