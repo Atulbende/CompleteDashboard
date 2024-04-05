@@ -18,11 +18,10 @@ export default function Role() {
       root.form.save(saveUser,isRequired,user)
   }
   useEffect(()=>{
-    root.form.load(OpenUser,recordId?.state,setUser,setIsRequired);
-  },[recordId])
- useEffect(()=>{
-    console.log('user:',user);
- },[user])
+    if(!isLoading){
+     root.form.load(OpenUser,recordId?.state,setUser,setIsRequired);
+    }
+  },[recordId,isLoading])
  const options = [{ value: 'Active', label: 'Active' },{ value: 'DeActive', label: 'DeActive' }];
  const actions=[{"title":'Save',"icon":'fa fa-check',"className":'btn-1',"action":saveHandle}];
   return (
